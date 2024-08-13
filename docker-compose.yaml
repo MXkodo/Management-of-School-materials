@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: Test
+      POSTGRES_USER: Test
+      POSTGRES_PASSWORD: Test
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    container_name: go_material_service
+    environment:
+      SERVER_PORT: "8080"
+      DB_USERNAME: "Test"
+      DB_PASSWORD: "Test"
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: "Test"
+      DB_SSLMODE: "disable"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  migrate:
+    image: debian:bookworm-slim
+    entrypoint:
+      [
+        "migrate",
+        "-path",
+        "/migrations",
+        "-database",
+        "postgres://Test:Test@postgres:5432/Test?sslmode=disable",
+        "up",
+      ]
+    volumes:
+      - ./internal/repo/db/migrate:/migrations
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
