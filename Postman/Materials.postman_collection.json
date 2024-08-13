@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "9ce12f38-425f-461c-95b1-a36c40ce21bc",
+		"name": "Materials",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32539666"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"type\": \"article\",\r\n  \"status\": \"active\",\r\n  \"title\": \"Sample Material\",\r\n  \"content\": \"This is a sample content.\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/materials",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"materials"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "One",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"type\": \"article\",\r\n  \"status\": \"archived\",\r\n  \"title\": \"Updated Material Title\",\r\n  \"content\": \"Updated content description.\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/materials/b7f80099-fdb5-4d79-9254-f9c7c27dfb1f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"materials",
+						"b7f80099-fdb5-4d79-9254-f9c7c27dfb1f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/materials?date_from=2024-08-12T00:00:00Z&date_to=2024-08-12T23:59:59Z&limit=10&offset=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"materials"
+					],
+					"query": [
+						{
+							"key": "date_from",
+							"value": "2024-08-12T00:00:00Z"
+						},
+						{
+							"key": "date_to",
+							"value": "2024-08-12T23:59:59Z"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
